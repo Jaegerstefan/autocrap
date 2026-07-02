@@ -28,7 +28,7 @@
       "mapping": {
         "name": "knobTouch{i}",
         "ctrl_in_num": 96,
-        "ctrl_kind": {"OnOff": {"mode": "Momentary"}},
+        "ctrl_kind": {"OnOff": {"mode": "LongPressRelease"}},
         "midi": {
           "channel": 0,
           "kind": "Cc",
@@ -42,7 +42,7 @@
         "name": "button{i}",
         "ctrl_in_num": 112,
         "ctrl_out_num": 112,
-        "ctrl_kind": {"OnOff": {"mode": "Toggle"}},
+        "ctrl_kind": {"OnOff": {"mode": "Momentary"}},
         "midi": {
           "channel": 0,
           "kind": "Cc",
@@ -89,16 +89,6 @@
         "channel": 0,
         "kind": "Cc",
         "num": 81
-      }
-    }},
-    {"Single": {
-      "name": "speedDialTouch",
-      "ctrl_in_num": 82,
-      "ctrl_kind": {"OnOff": {"mode": "Momentary"}},
-      "midi": {
-        "channel": 0,
-        "kind": "Cc",
-        "num": 82
       }
     }}
   ]

@@ -6,7 +6,8 @@ use serde::{Serialize, Deserialize};
 pub enum OnOffMode {
     Raw,
     Momentary,
-    Toggle
+    Toggle,
+    LongPressRelease
 }
 
 #[derive(Clone, Copy, Debug, Serialize, Deserialize)]
