@@ -1,6 +1,5 @@
 use log::{warn, info};
 use rosc::{OscMessage, OscType};
-use std::time::{Instant};
 
 use super::config::{Config, CtrlKind, Mapping, MidiKind, MidiSpec, OnOffMode, RelativeMode};
 
@@ -98,8 +97,7 @@ pub struct OnOffLogic {
     ctrl_out_num: Option<u8>,
     midi: Option<MidiSpec>,
     osc_addr: String,
-    state: bool,
-    press_time: Option<Instant>
+    state: bool
 }
 
 impl OnOffLogic {
@@ -151,8 +149,7 @@ impl CtrlLogic for OnOffLogic {
             ctrl_out_num: mapping.ctrl_out_num,
             midi: mapping.midi,
             osc_addr: mapping.osc_addr(),
-            state: false,
-            press_time: None
+            state: false
         }))
     }
 
@@ -186,16 +183,6 @@ impl CtrlLogic for OnOffLogic {
                     send_ctrl = false;
                     send_osc = false;
                 }
-            },
-            OnOffMode::LongPressRelease => {
-                if pressed {
-                    self.press_time = Some(std::time::Instant::now());
-                    return Some(Response::new());
-                } else if let Some(start_time) = self.press_time.take() {
-                    if start_time.elapsed() >= std::time::Duration::from_millis(500) {
-                        new_state = !self.state;
-                    } else { return Some(Response::new()); }
-                } else { return Some(Response::new()); }
             }
         }
 
